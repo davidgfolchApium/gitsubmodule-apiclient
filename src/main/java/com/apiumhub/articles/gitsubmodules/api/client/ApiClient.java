@@ -1,7 +1,5 @@
 package com.apiumhub.articles.gitsubmodules.api.client;
 
-import lombok.Getter;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
@@ -22,7 +20,7 @@ public class ApiClient {
 
     private final RestTemplate template;
 
-    public ApiClient(Environment env, RestTemplate template) {
+    public ApiClient(RestTemplate template) {
         this.template = template == null ? new RestTemplate() : template;
     }
 
