@@ -43,14 +43,14 @@ public class ApiClient {
         return catchException(() -> template.exchange(uri, GET, getHttpEntity(headers), responseType).getBody());
     }
 
-    public <T> T getQueryParams(String language, String url, Map<String, Object> parameters, Class<T> type) {
+    public <T> T get(String language, String url, Map<String, Object> queryParams, Class<T> type) {
         UriComponentsBuilder uriBuilder = fromUriString(url);
-        parameters.forEach(uriBuilder::queryParam);
+        queryParams.forEach(uriBuilder::queryParam);
         return catchException(() -> template.exchange(uriBuilder.build().toUri(), GET, getHttpEntity(language), type).getBody());
     }
 
-    public <T> T getPathParams(String lang, String url, Map<String, Object> params, Class<T> type) {
-        URI uriBuilder = fromUriString(url).buildAndExpand(params).toUri();
+    public <T> T getWithPathParams(String lang, String url, Map<String, Object> pathParams, Class<T> type) {
+        URI uriBuilder = fromUriString(url).buildAndExpand(pathParams).toUri();
         return catchException(() -> template.exchange(uriBuilder, GET, getHttpEntity(lang), type).getBody());
     }
 
