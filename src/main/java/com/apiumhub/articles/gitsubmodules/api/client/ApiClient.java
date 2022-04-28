@@ -1,5 +1,6 @@
 package com.apiumhub.articles.gitsubmodules.api.client;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
@@ -16,13 +17,10 @@ import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.web.util.UriComponentsBuilder.fromUriString;
 
 @Service
+@RequiredArgsConstructor
 public class ApiClient {
 
     private final RestTemplate template;
-
-    public ApiClient(RestTemplate template) {
-        this.template = template == null ? new RestTemplate() : template;
-    }
 
     public ApiClient setBasicAuth(String usr, String pass) {
         BasicAuthenticationInterceptor interceptor = new BasicAuthenticationInterceptor(usr, pass);
